@@ -1,19 +1,42 @@
-//
-//  ViewController.swift
-//  Tarea_iOS
-//
-//  Created by user257501 on 10/22/24.
-//
 
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    @IBOutlet weak var nameTF: UITextField!
+    @IBOutlet weak var playBTN: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        Start()
     }
-
-
+    
+    @IBAction func OnTextChanged(_ sender: Any) {
+        ValidateName()
+    }
+    
+    func Start() {
+        playBTN.setTitle("JUGAR", for: .normal)
+        nameTF.text = ""
+        playBTN.isEnabled = false
+    }
+    func Writting() {
+        playBTN.setTitle("JUGAR", for: .normal)
+        playBTN.isEnabled = true
+    }
+    func Error() {
+        playBTN.setTitle("NOMBRE NO VÁLIDO", for: .normal)
+        playBTN.isEnabled = false
+    }
+    
+    func ValidateName() -> Bool {
+        let name = nameTF.text!
+        let isValid = User.ValidateName(name: name)
+        if name.isEmpty {Start()}
+        else if !isValid {Error()}
+        else {Writting()}
+        
+        return isValid
+    }
 }
 
