@@ -15,17 +15,18 @@ class User {
     }
     
     static private func CheckSpecialChars(text: String) -> Bool{
+        var error = false
         for char in text {
-            if !char.isLetter || !char.isNumber {return false}
+            if char.isSymbol || char.isPunctuation || char.isMathSymbol || char.isCurrencySymbol {error = true}
         }
-        return true
+        return error
     }
     
     static func ValidateName(name: String) -> Bool {
         if name.isEmpty {return false}
         else if name.count > 10 {return false}
         else if !name.first!.isLetter {return false}
-        else if !CheckSpecialChars(text: name) {return false}
+        else if CheckSpecialChars(text: name) {return false}
         else {return true}
     }
 }

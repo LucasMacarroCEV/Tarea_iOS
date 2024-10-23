@@ -14,6 +14,7 @@
 		954850C02CC79FA600326EFC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 954850BF2CC79FA600326EFC /* Assets.xcassets */; };
 		954850C32CC79FA600326EFC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 954850C12CC79FA600326EFC /* LaunchScreen.storyboard */; };
 		954850D02CC7ACDF00326EFC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954850CF2CC7ACDF00326EFC /* User.swift */; };
+		95FA30042CC906BD00D87D68 /* ImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FA30032CC906BD00D87D68 /* ImagesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		954850C22CC79FA600326EFC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		954850C42CC79FA600326EFC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		954850CF2CC7ACDF00326EFC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		95FA30032CC906BD00D87D68 /* ImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,11 +62,12 @@
 			children = (
 				954850B62CC79FA500326EFC /* AppDelegate.swift */,
 				954850B82CC79FA500326EFC /* SceneDelegate.swift */,
-				954850BA2CC79FA500326EFC /* ViewController.swift */,
-				954850BC2CC79FA500326EFC /* Main.storyboard */,
 				954850BF2CC79FA600326EFC /* Assets.xcassets */,
+				954850BC2CC79FA500326EFC /* Main.storyboard */,
 				954850C12CC79FA600326EFC /* LaunchScreen.storyboard */,
 				954850C42CC79FA600326EFC /* Info.plist */,
+				954850BA2CC79FA500326EFC /* ViewController.swift */,
+				95FA30032CC906BD00D87D68 /* ImagesViewController.swift */,
 				954850CF2CC7ACDF00326EFC /* User.swift */,
 			);
 			path = Tarea_iOS;
@@ -140,6 +143,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95FA30042CC906BD00D87D68 /* ImagesViewController.swift in Sources */,
 				954850BB2CC79FA500326EFC /* ViewController.swift in Sources */,
 				954850B72CC79FA500326EFC /* AppDelegate.swift in Sources */,
 				954850D02CC7ACDF00326EFC /* User.swift in Sources */,

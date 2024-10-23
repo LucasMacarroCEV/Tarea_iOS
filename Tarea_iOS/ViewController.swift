@@ -11,6 +11,11 @@ class ViewController: UIViewController {
         Start()
     }
     
+    @IBAction func PressBTN(_ sender: UIButton) {
+        if ValidateName(){print("TA BIEN!")}
+        else {print("TA MAL!")}
+    }
+    
     @IBAction func OnTextChanged(_ sender: Any) {
         ValidateName()
     }
@@ -25,7 +30,7 @@ class ViewController: UIViewController {
         playBTN.isEnabled = true
     }
     func Error() {
-        playBTN.setTitle("NOMBRE NO VÁLIDO", for: .normal)
+        playBTN.setTitle("ERROR", for: .normal)
         playBTN.isEnabled = false
     }
     
