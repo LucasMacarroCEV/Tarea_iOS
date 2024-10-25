@@ -12,8 +12,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func PressBTN(_ sender: UIButton) {
-        if ValidateName(){print("TA BIEN!")}
-        else {print("TA MAL!")}
+        
     }
     
     @IBAction func OnTextChanged(_ sender: Any) {

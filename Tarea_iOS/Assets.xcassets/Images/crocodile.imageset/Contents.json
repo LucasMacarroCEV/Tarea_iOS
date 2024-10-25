@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "crocodile-alligator-jaws-tail-fang-flat-8fbfff.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
