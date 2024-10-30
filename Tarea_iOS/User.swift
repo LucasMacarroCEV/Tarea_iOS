@@ -1,6 +1,8 @@
 
 import Foundation
 
+var currentUser: User? = nil
+
 class User {
     var name: String = "Guest"
     var currentScore: Int?

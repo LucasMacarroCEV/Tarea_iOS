@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func PressBTN(_ sender: UIButton) {
-        
+        if ValidateName() {CreateUser(name: nameTF.text!)}
     }
     
     @IBAction func OnTextChanged(_ sender: Any) {
@@ -41,6 +41,12 @@ class ViewController: UIViewController {
         else {Writting()}
         
         return isValid
+    }
+    
+    func CreateUser(name: String) {
+        currentUser = User(name: name)
+        performSegue(withIdentifier: "ToImagesView", sender: nil)
+        Start()
     }
 }
 

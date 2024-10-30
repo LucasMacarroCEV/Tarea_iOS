@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		950951302CD16019004DAB4B /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9509512F2CD16019004DAB4B /* CollectionViewCell.swift */; };
+		951B9CE12CD1082E006E1A01 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951B9CE02CD1082E006E1A01 /* GameViewController.swift */; };
 		954850B72CC79FA500326EFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954850B62CC79FA500326EFC /* AppDelegate.swift */; };
 		954850B92CC79FA500326EFC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954850B82CC79FA500326EFC /* SceneDelegate.swift */; };
 		954850BB2CC79FA500326EFC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954850BA2CC79FA500326EFC /* ViewController.swift */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9509512F2CD16019004DAB4B /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		951B9CE02CD1082E006E1A01 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		954850B32CC79FA500326EFC /* Tarea_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tarea_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		954850B62CC79FA500326EFC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		954850B82CC79FA500326EFC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +72,8 @@
 				954850C42CC79FA600326EFC /* Info.plist */,
 				954850BA2CC79FA500326EFC /* ViewController.swift */,
 				95FA30032CC906BD00D87D68 /* ImagesViewController.swift */,
+				9509512F2CD16019004DAB4B /* CollectionViewCell.swift */,
+				951B9CE02CD1082E006E1A01 /* GameViewController.swift */,
 				954850CF2CC7ACDF00326EFC /* User.swift */,
 			);
 			path = Tarea_iOS;
@@ -146,7 +152,9 @@
 				95FA30042CC906BD00D87D68 /* ImagesViewController.swift in Sources */,
 				954850BB2CC79FA500326EFC /* ViewController.swift in Sources */,
 				954850B72CC79FA500326EFC /* AppDelegate.swift in Sources */,
+				950951302CD16019004DAB4B /* CollectionViewCell.swift in Sources */,
 				954850D02CC7ACDF00326EFC /* User.swift in Sources */,
+				951B9CE12CD1082E006E1A01 /* GameViewController.swift in Sources */,
 				954850B92CC79FA500326EFC /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
