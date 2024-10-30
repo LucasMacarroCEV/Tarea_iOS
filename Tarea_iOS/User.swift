@@ -5,8 +5,9 @@ var currentUser: User? = nil
 
 class User {
     var name: String = "Guest"
-    var currentScore: Int?
+    var currentScore: Int = 0
     var maxScore: Int?
+    var difficulty: Int = 3
     
     init(){
         

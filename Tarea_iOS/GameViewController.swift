@@ -7,8 +7,11 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBOutlet weak var userNameL: UILabel!
     @IBOutlet weak var userScoreL: UILabel!
     
+    var attempts: Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        Start()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -26,8 +29,30 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
         return CGSize(width: size, height: size)
     }
     
-    func collectionView(_ collectionView: UICollectionView,
-      didSelectItemAt indexPath: IndexPath) {
-        print("Cell \(indexPath.row + 1) clicked. Animal: \(imagesNamesArray[indexPath.row])")
-      }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        attempts += 1
+        print("Cell \(indexPath.row + 1) clicked. Animal: \(imagesNamesArray[indexPath.row]). Attempt: \(attempts)")
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
+        checkPressedImage(image: cell.imageView.image!)
+    }
+    
+    func Start() {
+        displayUserName()
+        displayUseScore()
+    }
+    
+    func checkPressedImage(image: UIImage) {
+        var puntuation: Int = 5
+    }
+    
+    func displayUserName() {
+        userNameL.text = currentUser?.name
+    }
+    func displayUseScore() {
+        userScoreL.text = String(currentUser!.currentScore)
+    }
+    func setUserScore(puntuation: Int) {
+        currentUser!.currentScore += puntuation
+        displayUseScore()
+    }
 }

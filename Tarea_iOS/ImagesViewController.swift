@@ -1,15 +1,6 @@
 
 import UIKit
 
-//var imagesArray: [UIImage] = [
-//    UIImage(named: "bird")!,
-//    UIImage(named: "crocodile")!,
-//    UIImage(named: "dog")!,
-//    UIImage(named: "giraffe")!,
-//    UIImage(named: "lion")!,
-//    UIImage(named: "shark")!,
-//    UIImage(named: "whale")!
-//]
 var imagesNamesArray: [String] = [
     "bird",
     "crocodile",
@@ -54,12 +45,14 @@ class ImagesViewController: UIViewController {
         self.numImages = 0
         Timer.scheduledTimer(withTimeInterval: 1.5, repeats: true) {(timer) in
             self.numImages += 1
-            if self.numImages < 4 {
+            if self.numImages <= currentUser!.difficulty {
                 self.ImagesIV.image = self.SelectRandomImage()
                 self.CountL.text = String(self.numImages)
             }
             else {
                 timer.invalidate()
+                self.ImagesIV.image = nil
+                self.CountL.text = ""
                 self.PerformSegue()
             }
         }
