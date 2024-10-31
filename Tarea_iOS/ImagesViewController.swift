@@ -10,7 +10,8 @@ var imagesNamesArray: [String] = [
     "shark",
     "whale"
 ]
-var usedImagesArray: [UIImage] = []
+var imagesArray: [Image] = []
+var usedImagesArray: [Image] = []
 
 class ImagesViewController: UIViewController {
     
@@ -21,7 +22,14 @@ class ImagesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        SetImagesArray()
         ChangeImage()
+    }
+    
+    func SetImagesArray() {
+        for i in 0..<imagesNamesArray.count {
+            imagesArray.append(Image(name: imagesNamesArray[i], image: UIImage(named: imagesNamesArray[i])!))
+        }
     }
     
     func Start(){
@@ -29,15 +37,15 @@ class ImagesViewController: UIViewController {
     }
     
     func SelectRandomImage() -> UIImage{
-        var currentImage: UIImage
+        var currentImage: Image
         
         while true {
             let randomInt = Int.random(in: 0..<imagesNamesArray.count)
-            currentImage = UIImage(named: imagesNamesArray[randomInt])!
+            currentImage = imagesArray[randomInt]
             
-            if !usedImagesArray.contains(currentImage){
+            if !Image.CheckImageArray(imagesArray: usedImagesArray, image: currentImage){
                 usedImagesArray.append(currentImage)
-                return currentImage
+                return currentImage.image
             }
         }
     }

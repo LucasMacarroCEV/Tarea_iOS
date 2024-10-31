@@ -31,7 +31,7 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         attempts += 1
-        print("Cell \(indexPath.row + 1) clicked. Animal: \(imagesNamesArray[indexPath.row]). Attempt: \(attempts)")
+        print("Cell \(indexPath.row + 1) clicked. Animal: \(imagesArray[indexPath.row].name). Attempt: \(attempts)")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
         checkPressedImage(image: cell.imageView.image!)
     }
