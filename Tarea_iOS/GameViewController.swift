@@ -21,7 +21,7 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
         cell.layer.borderWidth = 1
         cell.layer.cornerRadius = 15
-        cell.imageView.image = UIImage(named: imagesNamesArray[indexPath.row])
+        cell.imageView.image = imagesArray[indexPath.row].image
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -31,28 +31,37 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         attempts += 1
+        let cell:UICollectionViewCell = collectionView.cellForItem(at: indexPath)! as! CollectionViewCell
         print("Cell \(indexPath.row + 1) clicked. Animal: \(imagesArray[indexPath.row].name). Attempt: \(attempts)")
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
-        checkPressedImage(image: cell.imageView.image!)
+        if Image.CompareImages(image1: imagesArray[indexPath.row], image2: usedImagesArray[0]) {
+            usedImagesArray.remove(at: 0)
+            cell.contentView.backgroundColor = UIColor.green
+            SetUserScore(puntuation: 5)
+        }
+        else {
+            cell.contentView.backgroundColor = UIColor.red
+        }
+    }
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        let cell:UICollectionViewCell = collectionView.cellForItem(at: indexPath)! as! CollectionViewCell
+        if cell.contentView.backgroundColor != UIColor.green {
+            cell.contentView.backgroundColor = UIColor.clear
+        }
     }
     
     func Start() {
-        displayUserName()
-        displayUseScore()
+        DisplayUserName()
+        DisplayUseScore()
     }
     
-    func checkPressedImage(image: UIImage) {
-        var puntuation: Int = 5
-    }
-    
-    func displayUserName() {
+    func DisplayUserName() {
         userNameL.text = currentUser?.name
     }
-    func displayUseScore() {
+    func DisplayUseScore() {
         userScoreL.text = String(currentUser!.currentScore)
     }
-    func setUserScore(puntuation: Int) {
+    func SetUserScore(puntuation: Int) {
         currentUser!.currentScore += puntuation
-        displayUseScore()
+        DisplayUseScore()
     }
 }
