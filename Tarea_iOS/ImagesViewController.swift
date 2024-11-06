@@ -18,8 +18,6 @@ class ImagesViewController: UIViewController {
     @IBOutlet weak var ImagesIV: UIImageView!
     @IBOutlet weak var CountL: UILabel!
     
-    var numImages: Int = 0
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         SetImagesArray()
@@ -50,12 +48,12 @@ class ImagesViewController: UIViewController {
         }
     }
     func ChangeImage() {
-        self.numImages = 0
+        var numImages: Int = 0
         Timer.scheduledTimer(withTimeInterval: 1.5, repeats: true) {(timer) in
-            self.numImages += 1
-            if self.numImages <= currentUser!.difficulty {
+            numImages += 1
+            if numImages <= currentUser!.difficulty {
                 self.ImagesIV.image = self.SelectRandomImage()
-                self.CountL.text = String(self.numImages)
+                self.CountL.text = String(numImages)
             }
             else {
                 timer.invalidate()
