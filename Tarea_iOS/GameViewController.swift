@@ -34,9 +34,8 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
         let cell:UICollectionViewCell = collectionView.cellForItem(at: indexPath)! as! CollectionViewCell
         print("Cell \(indexPath.row + 1) clicked. Animal: \(imagesArray[indexPath.row].name). Attempt: \(attempts)")
         if Image.CompareImages(image1: imagesArray[indexPath.row], image2: usedImagesArray[0]) {
-            usedImagesArray.remove(at: 0)
             cell.contentView.backgroundColor = UIColor.green
-            SetUserScore(puntuation: 5)
+            CalculateUserScore()
         }
         else {
             cell.contentView.backgroundColor = UIColor.red
@@ -63,5 +62,36 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     func SetUserScore(puntuation: Int) {
         currentUser!.currentScore += puntuation
         DisplayUseScore()
+    }
+    
+    func CalculateUserScore() {
+        var puntuation: Int
+        switch attempts {
+        case 1:
+            puntuation = 7
+            break
+        case 2:
+            puntuation = 5
+            break
+        case 3:
+            puntuation = 3
+            break
+        case 4:
+            puntuation = 2
+            break
+        case 5:
+            puntuation = 1
+            break
+        default:
+            puntuation = 0
+            break
+        }
+        attempts = 0
+        usedImagesArray.remove(at: 0)
+        SetUserScore(puntuation: puntuation)
+        
+        if (usedImagesArray.isEmpty) {
+            performSegue(withIdentifier: "ToScoreView", sender: nil)
+        }
     }
 }

@@ -8,7 +8,7 @@ class User {
     var currentScore: Int = 0
     var maxScore: Int?
     var difficulty: Int = 3
-    
+
     init(){
         
     }
