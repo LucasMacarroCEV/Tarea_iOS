@@ -1,8 +1,8 @@
-//
-//  TableViewCell.swift
-//  Tarea_iOS
-//
-//  Created by Alumnos on 11/11/24.
-//
 
-import Foundation
+import UIKit
+
+class TableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var TCNameL: UILabel!
+    @IBOutlet weak var TCScoreL: UILabel!
+}

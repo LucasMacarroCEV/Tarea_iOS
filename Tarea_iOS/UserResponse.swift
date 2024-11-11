@@ -1,8 +1,7 @@
-//
-//  UserResponse.swift
-//  Tarea_iOS
-//
-//  Created by Alumnos on 7/11/24.
-//
 
 import Foundation
+
+struct UserResponse: Codable {
+    let name: String
+    let score: Int
+}

@@ -4,6 +4,8 @@ import UIKit
 class ScoreViewController: UIViewController, UITableViewDataSource {
     
     var users: [User] = []
+
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         GetApiScores()
@@ -15,25 +17,30 @@ class ScoreViewController: UIViewController, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell")
-        cell?.textLabel?.text = users[indexPath.row].name
-        return cell!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell") as! TableViewCell
+        cell.TCNameL.text = users[indexPath.row].name
+        cell.TCScoreL.text = String(describing: users[indexPath.row].maxScore!)
+        return cell
     }
     
     func GetApiScores() {
-        if let url = URL(string: "https://qhavrvkhlbmsljgmbknr.supabase.co/rest/v1/scores?select=*") {
+        if let url = URL(string: "https://qhavrvkhlbmsljgmbknr.supabase.co/rest/v1/scores?select=*&apikey=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFoYXZydmtobGJtc2xqZ21ia25yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDA3MjY5MTgsImV4cCI6MjAxNjMwMjkxOH0.Ta-_lXGGwSiUGh0VC8tAFcFQqsqAvB8vvXJjubeQkx8") {
             var request = URLRequest(url: url)
-            request.addValue("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFoYXZydmtobGJtc2xqZ21ia25yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDA        3MjY5MTgsImV4cCI6MjAxNjMwMjkxOH0.Ta-_lXGGwSiUGh0VC8tAFcFQqsqAvB8vvXJjubeQkx8", forHTTPHeaderField: "Acces-Key")
-            request.httpMethod = "GET"
-            let task = URLSession.shared.dataTask(with: request) {
+            let task = URLSession.shared.dataTask(with: request) { [self]
                 (data, response, error) in
                 guard let data = data else {return}
                 do {
-                    let postData = try JSONDecoder().decode([User].self, from: data)
+                    let usersResponse = try JSONDecoder().decode([UserResponse].self, from: data)
+                    print(usersResponse)
+                    for x in usersResponse {
+                        self.users.append(User(name: x.name, maxScore: x.score))
+                    }
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
                 }
-                catch {
-                    let error = error
-                    print(error.localizedDescription)
+                catch let errorJson {
+                    print(errorJson)
                 }
             }.resume()
         }

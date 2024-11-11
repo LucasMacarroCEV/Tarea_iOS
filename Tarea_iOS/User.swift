@@ -3,7 +3,7 @@ import Foundation
 
 var currentUser: User? = nil
 
-class User: Decodable {
+class User {
     var name: String = "Guest"
     var currentScore: Int = 0
     var maxScore: Int?
@@ -17,8 +17,9 @@ class User: Decodable {
         self.name = name
     }
     
-    init(json: [String: Any]) {
-        name = json["name"] as? String ?? ""
+    init(name: String, maxScore: Int) {
+        self.name = name
+        self.maxScore = maxScore
     }
     
     static private func CheckSpecialChars(text: String) -> Bool{

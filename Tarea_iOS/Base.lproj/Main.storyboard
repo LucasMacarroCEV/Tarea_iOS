@@ -226,13 +226,43 @@
                                 <rect key="frame" x="0.0" y="104" width="414" height="629"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableCell" id="ghf-bH-eut">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableCell" id="ghf-bH-eut" customClass="TableViewCell" customModule="Tarea_iOS">
                                         <rect key="frame" x="0.0" y="50" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ghf-bH-eut" id="j13-Xn-R7V">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Hermenegildo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T2q-3X-Pec">
+                                                    <rect key="frame" x="20" y="8" width="172" height="35"/>
+                                                    <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="18"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="4025" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZL-yK-1wm">
+                                                    <rect key="frame" x="339.5" y="12" width="54.5" height="27.5"/>
+                                                    <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="23"/>
+                                                    <nil key="textColor"/>
+                                                    <color key="highlightedColor" red="0.90494805570000003" green="0.75097465519999995" blue="0.98439091440000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="shadowColor" red="0.90408045049999997" green="0.77468246220000003" blue="0.2936409116" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <size key="shadowOffset" width="2" height="2"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="eZL-yK-1wm" firstAttribute="top" secondItem="j13-Xn-R7V" secondAttribute="top" constant="12" id="0WS-Z6-NbM"/>
+                                                <constraint firstAttribute="bottom" secondItem="eZL-yK-1wm" secondAttribute="bottom" constant="4" id="1rx-6A-MHq"/>
+                                                <constraint firstItem="T2q-3X-Pec" firstAttribute="top" secondItem="j13-Xn-R7V" secondAttribute="top" constant="8" id="D0V-ok-6ou"/>
+                                                <constraint firstItem="T2q-3X-Pec" firstAttribute="leading" secondItem="j13-Xn-R7V" secondAttribute="leading" constant="72" id="UEV-Bf-SYo"/>
+                                                <constraint firstItem="eZL-yK-1wm" firstAttribute="leading" secondItem="T2q-3X-Pec" secondAttribute="trailing" constant="148" id="ZUz-i3-TRm"/>
+                                                <constraint firstItem="eZL-yK-1wm" firstAttribute="leading" secondItem="T2q-3X-Pec" secondAttribute="trailing" constant="148" id="no9-Mi-GFA"/>
+                                                <constraint firstAttribute="trailing" secondItem="eZL-yK-1wm" secondAttribute="trailing" constant="20" id="ugI-8M-EUV"/>
+                                                <constraint firstAttribute="bottom" secondItem="T2q-3X-Pec" secondAttribute="bottom" constant="0.5" id="vQD-WW-V4c"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="TCNameL" destination="T2q-3X-Pec" id="GRP-kX-daA"/>
+                                            <outlet property="TCScoreL" destination="eZL-yK-1wm" id="YJ8-jr-fJM"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -266,6 +296,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="DBg-00-ynK"/>
+                    <connections>
+                        <outlet property="tableView" destination="a6y-JW-idb" id="0Rc-H5-O9w"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8R9-Fl-xxU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
