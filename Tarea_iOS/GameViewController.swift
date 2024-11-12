@@ -25,7 +25,7 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
-        cell.layer.borderWidth = 1
+        cell.layer.borderWidth = 3
         cell.layer.cornerRadius = 15
         cell.imageView.image = imagesArray[indexPath.row].image
         return cell
