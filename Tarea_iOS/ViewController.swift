@@ -20,16 +20,19 @@ class ViewController: UIViewController {
     }
     
     func Start() {
-        playBTN.setTitle("JUGAR", for: .normal)
+        //playBTN.setTitle("JUGAR", for: .normal)
+        playBTN.setImage(UIImage(named: "playicon2_back"), for: .normal)
         nameTF.text = ""
         playBTN.isEnabled = false
     }
     func Writting() {
-        playBTN.setTitle("JUGAR", for: .normal)
+        //playBTN.setTitle("JUGAR", for: .normal)
+        playBTN.setImage(UIImage(named: "playicon2_back"), for: .normal)
         playBTN.isEnabled = true
     }
     func Error() {
-        playBTN.setTitle("ERROR", for: .normal)
+        //playBTN.setTitle("ERROR", for: .normal)
+        playBTN.setImage(UIImage(named: "erroricon_back"), for: .normal)
         playBTN.isEnabled = false
     }
     

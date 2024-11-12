@@ -5,11 +5,27 @@ class ScoreViewController: UIViewController, UITableViewDataSource {
     
     var users: [User] = []
 
+    @IBOutlet weak var changeUserBTN: UIButton!
+    @IBOutlet weak var restartBTN: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
-        GetApiScores()
         super.viewDidLoad()
+        Start()
+        GetApiScores()
+    }
+    
+    func Start() {
+        changeUserBTN.isEnabled = false
+        restartBTN.isEnabled = false
+    }
+    func Loaded() {
+        changeUserBTN.isEnabled = true
+        restartBTN.isEnabled = true
+    }
+    func Error() {
+        changeUserBTN.isEnabled = false
+        restartBTN.isEnabled = false
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -21,6 +37,14 @@ class ScoreViewController: UIViewController, UITableViewDataSource {
         cell.TCNameL.text = users[indexPath.row].name
         cell.TCScoreL.text = String(describing: users[indexPath.row].maxScore!)
         return cell
+    }
+    
+    @IBAction func RestartGame(_ sender: UIButton) {
+        performSegue(withIdentifier: "BackToImagesView", sender: nil)
+    }
+    
+    @IBAction func ChangeUser(_ sender: UIButton) {
+        performSegue(withIdentifier: "BackToMainView", sender: nil)
     }
     
     func GetApiScores() {
@@ -37,6 +61,7 @@ class ScoreViewController: UIViewController, UITableViewDataSource {
                     }
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
+                        Loaded()
                     }
                 }
                 catch let errorJson {
@@ -44,5 +69,9 @@ class ScoreViewController: UIViewController, UITableViewDataSource {
                 }
             }.resume()
         }
+    }
+    
+    func RestartUserStats() {
+        currentUser?.currentScore = 0
     }
 }
