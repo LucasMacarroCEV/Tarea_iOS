@@ -45,8 +45,8 @@
                                 <color key="shadowColor" red="0.87554937600000005" green="0.73269432779999999" blue="0.34071189169999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <size key="shadowOffset" width="3" height="3"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Escribe tu nombre..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ria-tI-t8Y">
-                                <rect key="frame" x="70" y="536" width="274" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Escribe tu nombre..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ria-tI-t8Y">
+                                <rect key="frame" x="57" y="534" width="300" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -57,14 +57,14 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.94140760886191288" green="0.73568844281239065" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="ria-tI-t8Y" firstAttribute="centerX" secondItem="NMh-pO-v9N" secondAttribute="centerX" id="4Q9-dD-XdM"/>
-                            <constraint firstItem="ria-tI-t8Y" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="70" id="PPB-nc-Ed6"/>
                             <constraint firstItem="MMZ-DR-qdS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="36" id="S8g-xk-1uv"/>
                             <constraint firstItem="MMZ-DR-qdS" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="SfS-Qx-Qf3"/>
-                            <constraint firstItem="MMZ-DR-qdS" firstAttribute="centerX" secondItem="ria-tI-t8Y" secondAttribute="centerX" id="Ui0-Vk-Vo6"/>
-                            <constraint firstItem="NMh-pO-v9N" firstAttribute="top" secondItem="ria-tI-t8Y" secondAttribute="bottom" constant="78" id="X8X-3n-c0h"/>
+                            <constraint firstItem="ria-tI-t8Y" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="57" id="czS-Ma-931"/>
                             <constraint firstItem="MMZ-DR-qdS" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="heJ-NK-s7L"/>
+                            <constraint firstItem="NMh-pO-v9N" firstAttribute="top" secondItem="ria-tI-t8Y" secondAttribute="bottom" constant="80" id="hw2-9u-6Dl"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="NMh-pO-v9N" secondAttribute="bottom" constant="60" id="syd-BS-bMI"/>
+                            <constraint firstItem="ria-tI-t8Y" firstAttribute="centerX" secondItem="MMZ-DR-qdS" secondAttribute="centerX" id="w6K-FS-6ee"/>
+                            <constraint firstItem="ria-tI-t8Y" firstAttribute="centerX" secondItem="NMh-pO-v9N" secondAttribute="centerX" id="xei-Hm-Zcr"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="fb6-ui-62z"/>

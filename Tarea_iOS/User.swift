@@ -3,10 +3,10 @@ import Foundation
 
 var currentUser: User? = nil
 
-class User {
+class User: Codable {
     var name: String = "Guest"
     var currentScore: Int = 0
-    var maxScore: Int?
+    var maxScore: Int = 0
     var difficulty: Int = 3
 
     init(){
@@ -37,4 +37,57 @@ class User {
         else if CheckSpecialChars(text: name) {return false}
         else {return true}
     }
+    
+    static func ResetStats() {
+        currentUser!.currentScore = 0
+        currentUser!.maxScore = 0
+    }
 }
+
+var localUsers: [User] = []
+func CheckExistingUser() -> Bool {
+    return localUsers.filter({$0.name.lowercased() == currentUser?.name.lowercased()}).first != nil
+}
+func GetExistingUserIndex() -> Int {
+    return localUsers.firstIndex(where: {$0.name.lowercased() == currentUser?.name.lowercased()})!
+}
+func DeleteLocalData() {
+    UserDefaults.standard.removeObject(forKey: "users")
+}
+func SaveLocalData() {
+    if CheckExistingUser() {
+        let existingUserIndex = GetExistingUserIndex()
+        if localUsers[existingUserIndex].maxScore < currentUser!.maxScore {
+            localUsers[existingUserIndex].maxScore = currentUser!.maxScore
+        }
+    }
+    else {
+        localUsers.append(currentUser!)
+    }
+    for x in localUsers {
+        print("Nombre:", x.name, "\nPuntuacion max:", x.maxScore, "\n")
+    }
+    let encoder = JSONEncoder()
+    if let data = try? encoder.encode(localUsers) {
+        UserDefaults.standard.set(data, forKey: "users")
+    }
+}
+func LoadLocalData() {
+    if UserDefaults.standard.object(forKey: "users") != nil {
+        let data = UserDefaults.standard.object(forKey: "users") as! Data
+        let decoder = JSONDecoder()
+        if let users:[User] = try? decoder.decode([User].self, from: data) {
+            localUsers = users
+            for x in localUsers {
+                print("Nombre:", x.name, "\nPuntuacion max:", x.maxScore, "\n")
+            }
+            if CheckExistingUser() {
+                let existingUserIndex = GetExistingUserIndex()
+                if localUsers[existingUserIndex].maxScore > currentUser!.maxScore {
+                    currentUser!.maxScore = localUsers[existingUserIndex].maxScore
+                }
+            }
+        }
+    }
+}
+

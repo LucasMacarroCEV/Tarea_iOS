@@ -16,6 +16,7 @@ class ScoreViewController: UIViewController, UITableViewDataSource {
     }
     
     func Start() {
+        LoadLocalData()
         changeUserBTN.isEnabled = false
         restartBTN.isEnabled = false
     }
@@ -35,11 +36,12 @@ class ScoreViewController: UIViewController, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell") as! TableViewCell
         cell.TCNameL.text = users[indexPath.row].name
-        cell.TCScoreL.text = String(describing: users[indexPath.row].maxScore!)
+        cell.TCScoreL.text = String(describing: users[indexPath.row].maxScore)
         return cell
     }
     
     @IBAction func RestartGame(_ sender: UIButton) {
+        User.ResetStats()
         performSegue(withIdentifier: "BackToImagesView", sender: nil)
     }
     
@@ -55,7 +57,6 @@ class ScoreViewController: UIViewController, UITableViewDataSource {
                 guard let data = data else {return}
                 do {
                     let usersResponse = try JSONDecoder().decode([UserResponse].self, from: data)
-                    print(usersResponse)
                     for x in usersResponse {
                         self.users.append(User(name: x.name, maxScore: x.score))
                     }
@@ -65,13 +66,10 @@ class ScoreViewController: UIViewController, UITableViewDataSource {
                     }
                 }
                 catch let errorJson {
+                    Error()
                     print(errorJson)
                 }
             }.resume()
         }
-    }
-    
-    func RestartUserStats() {
-        currentUser?.currentScore = 0
     }
 }

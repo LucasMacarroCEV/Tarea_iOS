@@ -38,7 +38,7 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         attempts += 1
         let cell:UICollectionViewCell = collectionView.cellForItem(at: indexPath)! as! CollectionViewCell
-        print("Cell \(indexPath.row + 1) clicked. Animal: \(imagesArray[indexPath.row].name). Attempt: \(attempts)")
+        //print("Cell \(indexPath.row + 1) clicked. Animal: \(imagesArray[indexPath.row].name). Attempt: \(attempts)")
         if gameState == GameState.playing {
             CheckPressedImage(index: indexPath.row, cell: cell)
         }
@@ -51,6 +51,7 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     func Start() {
+        LoadLocalData()
         DisplayUserName()
         DisplayUseScore()
     }
@@ -81,12 +82,16 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
                 puntuation = 0
                 break
             }
-            if usedImagesArray.isEmpty {
-                gameState = GameState.end
-                performSegue(withIdentifier: "ToScoreView", sender: nil)
-            }
             attempts = 0
             SetUserScore(puntuation: puntuation)
+            if usedImagesArray.isEmpty {
+                gameState = GameState.end
+                SetUserMaxScore()
+                SaveLocalData()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+                    self.performSegue(withIdentifier: "ToScoreView", sender: nil)
+                }
+            }
         }
         else {
             cell.contentView.backgroundColor = UIColor.red
@@ -102,5 +107,10 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     func SetUserScore(puntuation: Int) {
         currentUser!.currentScore += puntuation
         DisplayUseScore()
+    }
+    func SetUserMaxScore() {
+        if currentUser!.currentScore > currentUser!.maxScore {
+            currentUser!.maxScore = currentUser!.currentScore
+        }
     }
 }
