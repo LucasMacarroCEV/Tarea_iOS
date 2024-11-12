@@ -51,7 +51,8 @@ class ImagesViewController: UIViewController {
         var numImages: Int = 0
         Timer.scheduledTimer(withTimeInterval: 1.5, repeats: true) {(timer) in
             numImages += 1
-            if numImages <= currentUser!.difficulty {
+            //if numImages <= currentUser!.difficulty {
+            if numImages <= 3 {
                 self.ImagesIV.image = self.SelectRandomImage()
                 self.CountL.text = String(numImages)
             }

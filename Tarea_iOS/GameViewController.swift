@@ -83,6 +83,7 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
             }
             if usedImagesArray.isEmpty {
                 gameState = GameState.end
+                performSegue(withIdentifier: "ToScoreView", sender: nil)
             }
             attempts = 0
             SetUserScore(puntuation: puntuation)

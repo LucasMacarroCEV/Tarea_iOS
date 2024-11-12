@@ -8,13 +8,18 @@ class User {
     var currentScore: Int = 0
     var maxScore: Int?
     var difficulty: Int = 3
-    
+
     init(){
         
     }
     
     init(name: String) {
         self.name = name
+    }
+    
+    init(name: String, maxScore: Int) {
+        self.name = name
+        self.maxScore = maxScore
     }
     
     static private func CheckSpecialChars(text: String) -> Bool{
