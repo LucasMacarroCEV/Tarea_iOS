@@ -64,9 +64,7 @@ func SaveLocalData() {
     else {
         localUsers.append(currentUser!)
     }
-    for x in localUsers {
-        print("Nombre:", x.name, "\nPuntuacion max:", x.maxScore, "\n")
-    }
+    //PrintLocalUsersDEBUG()
     let encoder = JSONEncoder()
     if let data = try? encoder.encode(localUsers) {
         UserDefaults.standard.set(data, forKey: "users")
@@ -78,9 +76,7 @@ func LoadLocalData() {
         let decoder = JSONDecoder()
         if let users:[User] = try? decoder.decode([User].self, from: data) {
             localUsers = users
-            for x in localUsers {
-                print("Nombre:", x.name, "\nPuntuacion max:", x.maxScore, "\n")
-            }
+            //PrintLocalUsersDEBUG()
             if CheckExistingUser() {
                 let existingUserIndex = GetExistingUserIndex()
                 if localUsers[existingUserIndex].maxScore > currentUser!.maxScore {
@@ -88,6 +84,11 @@ func LoadLocalData() {
                 }
             }
         }
+    }
+}
+func PrintLocalUsersDEBUG() {
+    for x in localUsers {
+        print("Nombre:", x.name, "\nPuntuacion max:", x.maxScore, "\n")
     }
 }
 

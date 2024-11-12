@@ -22,7 +22,6 @@ class ViewController: UIViewController {
     func Start() {
         DeleteLocalData()   
         playBTN.setImage(UIImage(named: "playicon2_back"), for: .normal)
-        //nameTF.text = ""
         playBTN.isEnabled = false
     }
     func Writting() {
