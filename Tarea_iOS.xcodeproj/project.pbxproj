@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7F0DD0292CDB7A9D002F882B /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0DD0282CDB7A9D002F882B /* ScoreViewController.swift */; };
 		7F0FC6232CE2336D000C215D /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0FC6222CE2336D000C215D /* TableViewCell.swift */; };
+		7F12B3AE2CE49C7200A0A8C7 /* Bugaki.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7F12B3AD2CE49C7200A0A8C7 /* Bugaki.ttf */; };
 		7F243BF22CDCF378005D340B /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F243BF12CDCF378005D340B /* UserResponse.swift */; };
 		950951302CD16019004DAB4B /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9509512F2CD16019004DAB4B /* CollectionViewCell.swift */; };
 		951B9CE12CD1082E006E1A01 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951B9CE02CD1082E006E1A01 /* GameViewController.swift */; };
@@ -20,13 +21,13 @@
 		954850C32CC79FA600326EFC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 954850C12CC79FA600326EFC /* LaunchScreen.storyboard */; };
 		954850D02CC7ACDF00326EFC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954850CF2CC7ACDF00326EFC /* User.swift */; };
 		95AC5D982CD3744400327EB9 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AC5D972CD3744400327EB9 /* Image.swift */; };
-		95D9DCB42CE3BEBB00D71281 /* Bugaki.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95D9DCB32CE3BEBB00D71281 /* Bugaki.ttf */; };
 		95FA30042CC906BD00D87D68 /* ImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FA30032CC906BD00D87D68 /* ImagesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7F0DD0282CDB7A9D002F882B /* ScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
 		7F0FC6222CE2336D000C215D /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		7F12B3AD2CE49C7200A0A8C7 /* Bugaki.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Bugaki.ttf; path = ../../../../Downloads/bugaki/Bugaki.ttf; sourceTree = "<group>"; };
 		7F243BF12CDCF378005D340B /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
 		9509512F2CD16019004DAB4B /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		951B9CE02CD1082E006E1A01 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -40,7 +41,6 @@
 		954850C42CC79FA600326EFC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		954850CF2CC7ACDF00326EFC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		95AC5D972CD3744400327EB9 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
-		95D9DCB32CE3BEBB00D71281 /* Bugaki.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Bugaki.ttf; path = ../../../../Downloads/Bugaki.ttf; sourceTree = "<group>"; };
 		95FA30032CC906BD00D87D68 /* ImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,7 +74,7 @@
 		954850B52CC79FA500326EFC /* Tarea_iOS */ = {
 			isa = PBXGroup;
 			children = (
-				95D9DCB32CE3BEBB00D71281 /* Bugaki.ttf */,
+				7F12B3AD2CE49C7200A0A8C7 /* Bugaki.ttf */,
 				954850B62CC79FA500326EFC /* AppDelegate.swift */,
 				954850B82CC79FA500326EFC /* SceneDelegate.swift */,
 				954850BF2CC79FA600326EFC /* Assets.xcassets */,
@@ -121,7 +121,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1520;
 				TargetAttributes = {
 					954850B22CC79FA500326EFC = {
 						CreatedOnToolsVersion = 12.4;
@@ -151,8 +151,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F12B3AE2CE49C7200A0A8C7 /* Bugaki.ttf in Resources */,
 				954850C32CC79FA600326EFC /* LaunchScreen.storyboard in Resources */,
-				95D9DCB42CE3BEBB00D71281 /* Bugaki.ttf in Resources */,
 				954850C02CC79FA600326EFC /* Assets.xcassets in Resources */,
 				954850BE2CC79FA500326EFC /* Main.storyboard in Resources */,
 			);

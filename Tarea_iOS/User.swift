@@ -45,18 +45,18 @@ class User: Codable {
 }
 
 var localUsers: [User] = []
-func CheckExistingUser() -> Bool {
-    return localUsers.filter({$0.name.lowercased() == currentUser?.name.lowercased()}).first != nil
+func CheckExistingUser(usersArray:[User]) -> Bool {
+    return usersArray.filter({$0.name.lowercased() == currentUser?.name.lowercased()}).first != nil
 }
-func GetExistingUserIndex() -> Int {
-    return localUsers.firstIndex(where: {$0.name.lowercased() == currentUser?.name.lowercased()})!
+func GetExistingUserIndex(usersArray:[User]) -> Int {
+    return usersArray.firstIndex(where: {$0.name.lowercased() == currentUser?.name.lowercased()})!
 }
 func DeleteLocalData() {
     UserDefaults.standard.removeObject(forKey: "users")
 }
 func SaveLocalData() {
-    if CheckExistingUser() {
-        let existingUserIndex = GetExistingUserIndex()
+    if CheckExistingUser(usersArray: localUsers) {
+        let existingUserIndex = GetExistingUserIndex(usersArray: localUsers)
         if localUsers[existingUserIndex].maxScore < currentUser!.maxScore {
             localUsers[existingUserIndex].maxScore = currentUser!.maxScore
         }
@@ -77,8 +77,8 @@ func LoadLocalData() {
         if let users:[User] = try? decoder.decode([User].self, from: data) {
             localUsers = users
             //PrintLocalUsersDEBUG()
-            if CheckExistingUser() {
-                let existingUserIndex = GetExistingUserIndex()
+            if CheckExistingUser(usersArray: localUsers) {
+                let existingUserIndex = GetExistingUserIndex(usersArray: localUsers)
                 if localUsers[existingUserIndex].maxScore > currentUser!.maxScore {
                     currentUser!.maxScore = localUsers[existingUserIndex].maxScore
                 }
