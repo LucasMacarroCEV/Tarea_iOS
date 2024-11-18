@@ -8,7 +8,12 @@ var imagesNamesArray: [String] = [
     "giraffe",
     "lion",
     "shark",
-    "whale"
+    "whale",
+    "snake",
+    "owl",
+    "cow",
+    "monkey",
+    "raccoon"
 ]
 var imagesArray: [Image] = []
 var usedImagesArray: [Image] = []
@@ -25,6 +30,7 @@ class ImagesViewController: UIViewController {
     }
     
     func SetImagesArray() {
+        imagesArray.removeAll()
         for i in 0..<imagesNamesArray.count {
             imagesArray.append(Image(name: imagesNamesArray[i], image: UIImage(named: imagesNamesArray[i])!))
         }

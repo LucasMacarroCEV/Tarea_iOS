@@ -3,6 +3,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var difficultyL: UILabel!
+    @IBOutlet weak var difficultyST: UIStepper!
     @IBOutlet weak var nameTF: UITextField!
     @IBOutlet weak var playBTN: UIButton!
     
@@ -23,6 +25,10 @@ class ViewController: UIViewController {
         DeleteLocalData() //-->BORRAR
         playBTN.setImage(UIImage(named: "playicon2_back"), for: .normal)
         playBTN.isEnabled = false
+        difficultyST.value = 3
+        difficultyST.maximumValue = Double(imagesNamesArray.count)
+        difficultyST.minimumValue = 2
+        difficultyL.text = String(difficultyST.value)
     }
     func Writting() {
         playBTN.setImage(UIImage(named: "playicon2_back"), for: .normal)

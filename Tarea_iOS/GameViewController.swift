@@ -48,6 +48,7 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
         LoadLocalData()
         DisplayUserName()
         DisplayUseScore()
+        imagesArray.shuffle()
     }
     
     func CheckPressedImage(index: Int, cell: UICollectionViewCell) {
