@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     }
     
     func Start() {
-        DeleteLocalData()   
+        DeleteLocalData() //-->BORRAR
         playBTN.setImage(UIImage(named: "playicon2_back"), for: .normal)
         playBTN.isEnabled = false
     }

@@ -2,12 +2,13 @@
 import UIKit
 
 class ScoreViewController: UIViewController, UITableViewDataSource {
-    
+        
     var users: [User] = []
     var apikey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFoYXZydmtobGJtc2xqZ21ia25yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDA3MjY5MTgsImV4cCI6MjAxNjMwMjkxOH0.Ta-_lXGGwSiUGh0VC8tAFcFQqsqAvB8vvXJjubeQkx8"
 
     @IBOutlet weak var changeUserBTN: UIButton!
     @IBOutlet weak var restartBTN: UIButton!
+    @IBOutlet weak var loadingAI: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -18,14 +19,20 @@ class ScoreViewController: UIViewController, UITableViewDataSource {
     
     func Start() {
         LoadLocalData()
+        loadingAI.startAnimating()
         changeUserBTN.isEnabled = false
         restartBTN.isEnabled = false
+        tableView.isHidden = true
     }
     func Loaded() {
+        loadingAI.stopAnimating()
+        tableView.isHidden = false
         changeUserBTN.isEnabled = true
         restartBTN.isEnabled = true
     }
     func Error() {
+        loadingAI.stopAnimating()
+        tableView.isHidden = true
         changeUserBTN.isEnabled = false
         restartBTN.isEnabled = false
     }
@@ -50,13 +57,38 @@ class ScoreViewController: UIViewController, UITableViewDataSource {
         performSegue(withIdentifier: "BackToMainView", sender: nil)
     }
     
-    func ManageApiData() {
-        
-        
-        
-        GetApiScores {[self] result in
+    func SetUsers() {
+        GetApiData {[self] result in
             switch result {
-            case.success(let data):
+            case .success(let data):
+                do {
+                    let usersResponse = try JSONDecoder().decode([UserResponse].self, from: data)
+                    for x in usersResponse {
+                        users.append(User(name: x.name, maxScore: x.score))
+                    }
+                    UpdateUsersTable()
+                }
+                catch let errorJson {
+                    Error()
+                    print(errorJson)
+                }
+            case .failure(let error):
+                Error()
+                print(error.localizedDescription)
+            }
+        }
+    }
+    func UpdateUsersTable() {
+        DispatchQueue.main.async {
+            self.users = self.users.sorted{$0.maxScore > $1.maxScore}
+            self.tableView.reloadData()
+            self.Loaded()
+        }
+    }
+    func ManageApiData() {
+        GetApiData {[self] result in
+            switch result {
+            case .success(let data):
                 do {
                     let usersResponse = try JSONDecoder().decode([UserResponse].self, from: data)
                     for x in usersResponse {
@@ -65,84 +97,59 @@ class ScoreViewController: UIViewController, UITableViewDataSource {
                     if CheckExistingUser(usersArray: users) {
                         let existingUserIndex = GetExistingUserIndex(usersArray: users)
                         if users[existingUserIndex].maxScore < currentUser!.maxScore {
-                            print("El ususario existe en la base de datos")
-                            //PatchApiScores()
+                            PatchApiData(name: currentUser!.name, score: currentUser!.maxScore) {[self] result in
+                                switch result {
+                                case .success(let data):
+                                    print("El ususario existe en la base de datos")
+                                    SetUsers()
+                                case .failure(let error):
+                                    Error()
+                                    print(error.localizedDescription)
+                                }
+                            }
+                        }
+                        else {
+                            UpdateUsersTable()
                         }
                     }
                     else {
-                        //PostApiScores(name: currentUser!.name, score: currentUser!.maxScore)
-                        print("El usuario ha sido añadido a la base de datos")
+                        PostApiData(name: currentUser!.name, score: currentUser!.maxScore) {[self] result in
+                            switch result {
+                            case .success(let data):
+                                print("El usuario ha sido añadido a la base de datos")
+                                SetUsers()
+                            case .failure(let error):
+                                Error()
+                                print(error.localizedDescription)
+                            }
+                        }
                     }
                 }
                 catch let errorJson {
-                    self.Error()
+                    Error()
                     print(errorJson)
                 }
             case .failure(let error):
+                Error()
                 print(error.localizedDescription)
-                self.Error()
-            }
-        }
-        GetApiScores {[self] result in
-            switch result {
-            case.success(let data):
-                do {
-                    let usersResponse = try JSONDecoder().decode([UserResponse].self, from: data)
-                    for x in usersResponse {
-                        users.append(User(name: x.name, maxScore: x.score))
-                    }
-                    DispatchQueue.main.async {
-                        self.users = self.users.sorted{$0.maxScore > $1.maxScore}
-                        self.tableView.reloadData()
-                        self.Loaded()
-                    }
-                }
-                catch let errorJson {
-                    self.Error()
-                    print(errorJson)
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
-                self.Error()
             }
         }
     }
-    func GetApiScores(completion: @escaping (Result<Data, Error>) -> Void) {
+    
+    func GetApiData(completion: @escaping (Result<Data, Error>) -> Void) {
+        users.removeAll()
         if let url = URL(string: "https://qhavrvkhlbmsljgmbknr.supabase.co/rest/v1/scores?select=*") {
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
             request.setValue(apikey, forHTTPHeaderField: "apikey")
-            
             let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
                 if let error = error {completion(.failure(error)); return}
                 guard let httpResponse = response, let data = data else {completion(.failure(error!)); return}
                 completion(.success(data))
             }.resume()
         }
-//        users.removeAll()
-//        if let url = URL(string: "https://qhavrvkhlbmsljgmbknr.supabase.co/rest/v1/scores?select=*") {
-//            var request = URLRequest(url: url)
-//            request.httpMethod = "GET"
-//            request.setValue(apikey, forHTTPHeaderField: "apikey")
-//            let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
-//                guard let data = data else {return}
-//                do {
-//                    let usersResponse = try JSONDecoder().decode([UserResponse].self, from: data)
-//                    for x in usersResponse {
-//                        self.users.append(User(name: x.name, maxScore: x.score))
-//                    }
-//                    DispatchQueue.main.async {
-//                        //self.ManageApiData()
-//                    }
-//                }
-//                catch let errorJson {
-//                    self.Error()
-//                    print(errorJson)
-//                }
-//            }.resume()
-//        }
     }
-    func PostApiScores(name:String, score:Int) {
+    func PostApiData(name:String, score:Int, completion: @escaping (Result<Data, Error>) -> Void) {
         let parameters: [String: Any] = ["name": name, "score": score]
         let parametersJSON = try? JSONSerialization.data(withJSONObject: parameters)
         
@@ -153,19 +160,27 @@ class ScoreViewController: UIViewController, UITableViewDataSource {
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             request.httpBody = parametersJSON
             let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
-                guard let data = data, error == nil else {
-                    self.Error()
-                    print(error?.localizedDescription ?? "No data")
-                    return
-                }
-                let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-                if let responseJSON = responseJSON as? [String: Any] {
-                    print(responseJSON)
-                }
+                if let error = error {completion(.failure(error)); return}
+                guard let data = data else {completion(.failure(error!)); return}
+                completion(.success(data))
             }.resume()
         }
     }
-    func PatchApiScores() {
+    func PatchApiData(name: String, score: Int, completion: @escaping (Result<Data, Error>) -> Void) {
+        let parameters: [String: Any] = ["score": score]
+        let parametersJSON = try? JSONSerialization.data(withJSONObject: parameters)
         
+        if let url = URL(string: "https://qhavrvkhlbmsljgmbknr.supabase.co/rest/v1/scores?name=eq."+name) {
+            var request = URLRequest(url: url)
+            request.httpMethod = "PATCH"
+            request.setValue(apikey, forHTTPHeaderField: "apikey")
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = parametersJSON
+            let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
+                if let error = error {completion(.failure(error)); return}
+                guard let data = data else {completion(.failure(error!)); return}
+                completion(.success(data))
+            }.resume()
+        }
     }
 }

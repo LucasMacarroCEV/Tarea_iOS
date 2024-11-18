@@ -8,12 +8,7 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBOutlet weak var userScoreL: UILabel!
     
     var attempts: Int = 0
-    
-    enum GameState {
-        case playing
-        case end
-    }
-    var gameState: GameState = GameState.playing
+    var bIsPlaying: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,8 +33,7 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         attempts += 1
         let cell:UICollectionViewCell = collectionView.cellForItem(at: indexPath)! as! CollectionViewCell
-        //print("Cell \(indexPath.row + 1) clicked. Animal: \(imagesArray[indexPath.row].name). Attempt: \(attempts)")
-        if gameState == GameState.playing {
+        if bIsPlaying {
             CheckPressedImage(index: indexPath.row, cell: cell)
         }
     }
@@ -85,7 +79,7 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
             attempts = 0
             SetUserScore(puntuation: puntuation)
             if usedImagesArray.isEmpty {
-                gameState = GameState.end
+                bIsPlaying = false
                 SetUserMaxScore()
                 SaveLocalData()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
