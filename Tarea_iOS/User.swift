@@ -13,8 +13,9 @@ class User: Codable {
         
     }
     
-    init(name: String) {
+    init(name: String, difficulty: Int) {
         self.name = name
+        self.difficulty = difficulty
     }
     
     init(name: String, maxScore: Int) {

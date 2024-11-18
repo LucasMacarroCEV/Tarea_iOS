@@ -25,12 +25,12 @@ class ImagesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        Start()
         SetImagesArray()
         ChangeImage()
     }
     
     func SetImagesArray() {
-        imagesArray.removeAll()
         for i in 0..<imagesNamesArray.count {
             imagesArray.append(Image(name: imagesNamesArray[i], image: UIImage(named: imagesNamesArray[i])!))
         }
@@ -38,6 +38,7 @@ class ImagesViewController: UIViewController {
     
     func Start(){
         usedImagesArray.removeAll()
+        imagesArray.removeAll()
     }
     
     func SelectRandomImage() -> UIImage{
@@ -55,7 +56,7 @@ class ImagesViewController: UIViewController {
     }
     func ChangeImage() {
         var numImages: Int = 0
-        Timer.scheduledTimer(withTimeInterval: 1.35, repeats: true) {(timer) in
+        Timer.scheduledTimer(withTimeInterval: 1.5, repeats: true) {(timer) in
             numImages += 1
             if numImages <= currentUser!.difficulty {
                 self.ImagesIV.image = self.SelectRandomImage()

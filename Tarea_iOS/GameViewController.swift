@@ -26,7 +26,7 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = (collectionView.frame.size.width-65)/2
+        let size = (collectionView.frame.size.width-65)/3
         return CGSize(width: size, height: size)
     }
     
@@ -84,12 +84,15 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
                 SetUserMaxScore()
                 SaveLocalData()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
-                    self.performSegue(withIdentifier: "ToScoreView", sender: nil)
+                    //self.performSegue(withIdentifier: "ToScoreView", sender: nil)
+                    self.DisplayUserInfoAlert()
                 }
             }
         }
         else {
-            cell.contentView.backgroundColor = UIColor.red
+            if cell.contentView.backgroundColor != UIColor.green {
+                cell.contentView.backgroundColor = UIColor.red
+            }
         }
     }
     
@@ -107,5 +110,15 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
         if currentUser!.currentScore > currentUser!.maxScore {
             currentUser!.maxScore = currentUser!.currentScore
         }
+    }
+    
+    func DisplayUserInfoAlert() {
+        let alert = UIAlertController(title: "\(currentUser!.name)", message: "Puntuación: \(currentUser!.currentScore)\nDificultad: \(currentUser!.difficulty)\nPuntuación Máxima: \(currentUser?.maxScore)", preferredStyle: UIAlertController.Style.alert)
+
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {action in
+            self.performSegue(withIdentifier: "ToScoreView", sender: nil)
+        }))
+
+        self.present(alert, animated: true, completion: nil)
     }
 }

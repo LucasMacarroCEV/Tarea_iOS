@@ -21,14 +21,22 @@ class ViewController: UIViewController {
         ValidateName()
     }
     
+    @IBAction func OnDifficultyChanged(_ sender: UIStepper) {
+        DisplayDifficulty(value: sender.value)
+    }
+    
+    func DisplayDifficulty(value: Double) {
+        difficultyL.text = "\(Int(value))"
+    }
+    
     func Start() {
         DeleteLocalData() //-->BORRAR
         playBTN.setImage(UIImage(named: "playicon2_back"), for: .normal)
         playBTN.isEnabled = false
-        difficultyST.value = 3
         difficultyST.maximumValue = Double(imagesNamesArray.count)
         difficultyST.minimumValue = 2
-        difficultyL.text = String(difficultyST.value)
+        difficultyST.value = 3
+        //DisplayDifficulty(value: difficultyST.value)
     }
     func Writting() {
         playBTN.setImage(UIImage(named: "playicon2_back"), for: .normal)
@@ -50,9 +58,10 @@ class ViewController: UIViewController {
     }
     
     func CreateUser(name: String) {
-        currentUser = User(name: name)
+        currentUser = User(name: name, difficulty: Int(difficultyST.value))
+        print(currentUser!.name + " - " + String(currentUser!.difficulty))
         performSegue(withIdentifier: "ToImagesView", sender: nil)
-        Start()
+        //Start()
     }
 }
 
