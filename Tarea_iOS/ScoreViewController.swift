@@ -17,6 +17,7 @@ class ScoreViewController: UIViewController, UITableViewDataSource {
         ManageApiData()
     }
     
+    //Conjunto de métodos que gestionan los estados del VC
     func Start() {
         LoadLocalData()
         loadingAI.startAnimating()
@@ -41,23 +42,23 @@ class ScoreViewController: UIViewController, UITableViewDataSource {
         return users.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell { //Método que crea las cells del tableView de usuarios
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell") as! TableViewCell
         cell.TCNameL.text = users[indexPath.row].name
         cell.TCScoreL.text = String(describing: users[indexPath.row].maxScore)
         return cell
     }
     
-    @IBAction func RestartGame(_ sender: UIButton) {
+    @IBAction func RestartGame(_ sender: UIButton) { //Método que reinicia el juego manteniendo el usuario al pulsar un botón
         User.ResetStats()
         performSegue(withIdentifier: "BackToImagesView", sender: nil)
     }
     
-    @IBAction func ChangeUser(_ sender: UIButton) {
+    @IBAction func ChangeUser(_ sender: UIButton) { //Método que reinicia el juego cambiando el usuario al pulsar un botón
         performSegue(withIdentifier: "BackToMainView", sender: nil)
     }
     
-    func SetUsers() {
+    func SetUsers() { //Método que realiza una petición GET a la API y inicaliza el array de users
         GetApiData {[self] result in
             switch result {
             case .success(let data):
@@ -78,14 +79,14 @@ class ScoreViewController: UIViewController, UITableViewDataSource {
             }
         }
     }
-    func UpdateUsersTable() {
+    func UpdateUsersTable() { //Método que actualiza el tableView
         DispatchQueue.main.async {
             self.users = self.users.sorted{$0.maxScore > $1.maxScore}
             self.tableView.reloadData()
             self.Loaded()
         }
     }
-    func ManageApiData() {
+    func ManageApiData() { //Método que gestiona las peticiones a la API, comprueba si el ususario existe, y en caso afirmativo, si su puntuaciónMax actual es mayor
         GetApiData {[self] result in
             switch result {
             case .success(let data):
@@ -136,7 +137,7 @@ class ScoreViewController: UIViewController, UITableViewDataSource {
         }
     }
     
-    func GetApiData(completion: @escaping (Result<Data, Error>) -> Void) {
+    func GetApiData(completion: @escaping (Result<Data, Error>) -> Void) { //Petición GET con completion
         users.removeAll()
         if let url = URL(string: "https://qhavrvkhlbmsljgmbknr.supabase.co/rest/v1/scores?select=*") {
             var request = URLRequest(url: url)
@@ -149,7 +150,7 @@ class ScoreViewController: UIViewController, UITableViewDataSource {
             }.resume()
         }
     }
-    func PostApiData(name:String, score:Int, completion: @escaping (Result<Data, Error>) -> Void) {
+    func PostApiData(name:String, score:Int, completion: @escaping (Result<Data, Error>) -> Void) { //Petición POST con completion
         let parameters: [String: Any] = ["name": name, "score": score]
         let parametersJSON = try? JSONSerialization.data(withJSONObject: parameters)
         
@@ -166,7 +167,7 @@ class ScoreViewController: UIViewController, UITableViewDataSource {
             }.resume()
         }
     }
-    func PatchApiData(name: String, score: Int, completion: @escaping (Result<Data, Error>) -> Void) {
+    func PatchApiData(name: String, score: Int, completion: @escaping (Result<Data, Error>) -> Void) { //Petición PATCH con completion
         let parameters: [String: Any] = ["score": score]
         let parametersJSON = try? JSONSerialization.data(withJSONObject: parameters)
         

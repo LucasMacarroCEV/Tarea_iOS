@@ -1,7 +1,7 @@
 
 import UIKit
 
-var imagesNamesArray: [String] = [
+var imagesNamesArray: [String] = [ //Array con los nombres de las imagenes del proyecto
     "bird",
     "crocodile",
     "dog",
@@ -30,18 +30,18 @@ class ImagesViewController: UIViewController {
         ChangeImage()
     }
     
-    func SetImagesArray() {
+    func SetImagesArray() { //Método que llena un array con objetos Image a partir del array de imagesNamesArray
         for i in 0..<imagesNamesArray.count {
             imagesArray.append(Image(name: imagesNamesArray[i], image: UIImage(named: imagesNamesArray[i])!))
         }
     }
     
-    func Start(){
+    func Start(){ //Método que define el estado inicial del VC
         usedImagesArray.removeAll()
         imagesArray.removeAll()
     }
     
-    func SelectRandomImage() -> UIImage{
+    func SelectRandomImage() -> UIImage{ //Método que devuelve una imagen aleatoria de imagesArray evitando que se repitan
         var currentImage: Image
         
         while true {
@@ -54,7 +54,7 @@ class ImagesViewController: UIViewController {
             }
         }
     }
-    func ChangeImage() {
+    func ChangeImage() { //Método que cambia la imagen mostrada en pantalla con un timer y realiza un segue al siguiente VC
         var numImages: Int = 0
         Timer.scheduledTimer(withTimeInterval: 1.5, repeats: true) {(timer) in
             numImages += 1

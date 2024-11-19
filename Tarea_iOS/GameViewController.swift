@@ -18,7 +18,7 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return imagesNamesArray.count
     }
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell { //Método que crea las cells del collectionView
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
         cell.layer.borderWidth = 3
         cell.layer.cornerRadius = 15
@@ -30,28 +30,28 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
         return CGSize(width: size, height: size)
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) { //Método que gestiona la cell pulsada por el usuario
         attempts += 1
         let cell:UICollectionViewCell = collectionView.cellForItem(at: indexPath)! as! CollectionViewCell
         if bIsPlaying {
             CheckPressedImage(index: indexPath.row, cell: cell)
         }
     }
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) { //Método que elimina el color de fondo de la cell deseleccionada
         let cell:UICollectionViewCell = collectionView.cellForItem(at: indexPath)! as! CollectionViewCell
         if cell.contentView.backgroundColor != UIColor.green {
             cell.contentView.backgroundColor = UIColor.clear
         }
     }
     
-    func Start() {
+    func Start() { //Método que define el estado inicial del VC
         LoadLocalData()
         DisplayUserName()
         DisplayUseScore()
         imagesArray.shuffle()
     }
     
-    func CheckPressedImage(index: Int, cell: UICollectionViewCell) {
+    func CheckPressedImage(index: Int, cell: UICollectionViewCell) { //Método que gestiona el acierto o fallo, la puntuación y el fin del juego
         var puntuation = 5
         
         if Image.CompareImages(image1: imagesArray[index], image2: usedImagesArray[0]) {
@@ -114,8 +114,7 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
     }
     
-    //Alert Dialog de prueba
-    func DisplayUserInfoAlert() {
+    func DisplayUserInfoAlert() { //Método que genera un alertDialog con las estadísticas del ususraio actual (TEST)
         let alert = UIAlertController(title: "\(currentUser!.name)", message: "Puntuación: \(currentUser!.currentScore)\nDificultad: \(currentUser!.difficulty)\nPuntuación Máxima: \(currentUser!.maxScore)", preferredStyle: UIAlertController.Style.alert)
 
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {action in

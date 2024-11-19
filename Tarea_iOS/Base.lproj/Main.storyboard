@@ -494,7 +494,6 @@
                         <outlet property="nameL" destination="9rb-nk-kse" id="Ggl-ac-G48"/>
                         <outlet property="popUpView" destination="CQ7-3w-Wtw" id="RoU-Qg-Oos"/>
                         <outlet property="scoreL" destination="1EL-QB-byR" id="qly-b8-FZg"/>
-                        <segue destination="PAp-kJ-rjZ" kind="show" identifier="ToScoreView2" id="mwP-Zm-9Tz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1y8-Ke-bm0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -503,7 +502,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="mwP-Zm-9Tz"/>
         <segue reference="Ym4-Tu-xKX"/>
     </inferredMetricsTieBreakers>
     <resources>

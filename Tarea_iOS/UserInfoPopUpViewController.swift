@@ -17,13 +17,13 @@ class UserInfoPopUpViewController: UIViewController {
         SetPopUpValues()
     }
     
-    func SetPopUpValues() {
+    func SetPopUpValues() { //Método que muestra las estadísticas del ususario actual en el popUp
         nameL.text = currentUser!.name
         scoreL.text = String(currentUser!.currentScore)
         maxScoreL.text = String(currentUser!.maxScore)
         difficultyL.text = String(currentUser!.difficulty)
     }
-    static func ShowPopup(parentVC: UIViewController){
+    static func ShowPopup(parentVC: UIViewController){ //Método que crea el popUp
         if let popUpViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UserInfoPopupViewController") as? UserInfoPopUpViewController {
             popUpViewController.modalPresentationStyle = .custom
             popUpViewController.modalTransitionStyle = .crossDissolve

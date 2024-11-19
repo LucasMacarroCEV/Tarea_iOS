@@ -29,6 +29,7 @@ class ViewController: UIViewController {
         difficultyL.text = "\(Int(value))"
     }
     
+    //Conjuento de métodos que definen los estados del ViewController
     func Start() {
         //DeleteLocalData() //-->BORRAR
         playBTN.setImage(UIImage(named: "playicon2_back"), for: .normal)
@@ -47,7 +48,7 @@ class ViewController: UIViewController {
         playBTN.isEnabled = false
     }
     
-    func ValidateName() -> Bool {
+    func ValidateName() -> Bool { //Método que valida el nombre introducido
         let name = nameTF.text!
         let isValid = User.ValidateName(name: name)
         if name.isEmpty {Start()}
@@ -57,7 +58,7 @@ class ViewController: UIViewController {
         return isValid
     }
     
-    func CreateUser(name: String) {
+    func CreateUser(name: String) { //Método que crea y asigna el usuario actual y realiza un segue al siguiente VC
         currentUser = User(name: name, difficulty: Int(difficultyST.value))
         print(currentUser!.name + " - " + String(currentUser!.difficulty))
         performSegue(withIdentifier: "ToImagesView", sender: nil)
