@@ -83,9 +83,11 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
                 bIsPlaying = false
                 SetUserMaxScore()
                 SaveLocalData()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
-                    //self.performSegue(withIdentifier: "ToScoreView", sender: nil)
-                    self.DisplayUserInfoAlert()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    UserInfoPopUpViewController.ShowPopup(parentVC: self)
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.75) {
+                    self.performSegue(withIdentifier: "ToScoreView", sender: nil)
                 }
             }
         }
@@ -112,8 +114,9 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
     }
     
+    //Alert Dialog de prueba
     func DisplayUserInfoAlert() {
-        let alert = UIAlertController(title: "\(currentUser!.name)", message: "Puntuación: \(currentUser!.currentScore)\nDificultad: \(currentUser!.difficulty)\nPuntuación Máxima: \(currentUser?.maxScore)", preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: "\(currentUser!.name)", message: "Puntuación: \(currentUser!.currentScore)\nDificultad: \(currentUser!.difficulty)\nPuntuación Máxima: \(currentUser!.maxScore)", preferredStyle: UIAlertController.Style.alert)
 
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {action in
             self.performSegue(withIdentifier: "ToScoreView", sender: nil)

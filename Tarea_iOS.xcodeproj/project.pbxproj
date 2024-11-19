@@ -13,6 +13,7 @@
 		950951302CD16019004DAB4B /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9509512F2CD16019004DAB4B /* CollectionViewCell.swift */; };
 		950974262CEB2FC3009C42FB /* Bugaki.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 950974252CEB2FC3009C42FB /* Bugaki.ttf */; };
 		951B9CE12CD1082E006E1A01 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951B9CE02CD1082E006E1A01 /* GameViewController.swift */; };
+		952C69AB2CEBD0DD00E6906C /* UserInfoPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952C69AA2CEBD0DD00E6906C /* UserInfoPopUpViewController.swift */; };
 		954850B72CC79FA500326EFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954850B62CC79FA500326EFC /* AppDelegate.swift */; };
 		954850B92CC79FA500326EFC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954850B82CC79FA500326EFC /* SceneDelegate.swift */; };
 		954850BB2CC79FA500326EFC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954850BA2CC79FA500326EFC /* ViewController.swift */; };
@@ -31,6 +32,7 @@
 		9509512F2CD16019004DAB4B /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		950974252CEB2FC3009C42FB /* Bugaki.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bugaki.ttf; sourceTree = "<group>"; };
 		951B9CE02CD1082E006E1A01 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		952C69AA2CEBD0DD00E6906C /* UserInfoPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoPopUpViewController.swift; sourceTree = "<group>"; };
 		954850B32CC79FA500326EFC /* Tarea_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tarea_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		954850B62CC79FA500326EFC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		954850B82CC79FA500326EFC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				951B9CE02CD1082E006E1A01 /* GameViewController.swift */,
 				7F0DD0282CDB7A9D002F882B /* ScoreViewController.swift */,
 				7F0FC6222CE2336D000C215D /* TableViewCell.swift */,
+				952C69AA2CEBD0DD00E6906C /* UserInfoPopUpViewController.swift */,
 				7F243BF12CDCF378005D340B /* UserResponse.swift */,
 				95AC5D972CD3744400327EB9 /* Image.swift */,
 				954850CF2CC7ACDF00326EFC /* User.swift */,
@@ -167,6 +170,7 @@
 			files = (
 				95FA30042CC906BD00D87D68 /* ImagesViewController.swift in Sources */,
 				95AC5D982CD3744400327EB9 /* Image.swift in Sources */,
+				952C69AB2CEBD0DD00E6906C /* UserInfoPopUpViewController.swift in Sources */,
 				954850BB2CC79FA500326EFC /* ViewController.swift in Sources */,
 				954850B72CC79FA500326EFC /* AppDelegate.swift in Sources */,
 				950951302CD16019004DAB4B /* CollectionViewCell.swift in Sources */,

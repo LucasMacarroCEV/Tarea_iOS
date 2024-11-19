@@ -33,7 +33,7 @@ class User: Codable {
     
     static func ValidateName(name: String) -> Bool {
         if name.isEmpty {return false}
-        else if name.count > 10 {return false}
+        else if name.count > 12 {return false}
         else if !name.first!.isLetter {return false}
         else if CheckSpecialChars(text: name) {return false}
         else {return true}

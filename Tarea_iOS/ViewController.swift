@@ -30,7 +30,7 @@ class ViewController: UIViewController {
     }
     
     func Start() {
-        DeleteLocalData() //-->BORRAR
+        //DeleteLocalData() //-->BORRAR
         playBTN.setImage(UIImage(named: "playicon2_back"), for: .normal)
         playBTN.isEnabled = false
         difficultyST.maximumValue = Double(imagesNamesArray.count)
